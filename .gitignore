@@ -1,0 +1,12 @@
+# Build & test artifacts
+test_pid
+test_pid.exe
+*.o
+*.out
+
+# OS & editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+node_modules/

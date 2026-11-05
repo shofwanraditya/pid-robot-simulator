@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PID Robot Simulator — Interactive PID Tuning Lab</title>
+  <meta name="description" content="Simulator interaktif PID controller untuk motor DC, robot line follower, dan inverted pendulum. Tuning Kp, Ki, Kd secara real-time." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🤖</span>
+      <div>
+        <h1>PID Robot Simulator</h1>
+        <p class="subtitle">Interactive PID tuning lab — Motor DC · Line Follower · Inverted Pendulum</p>
+      </div>
+    </div>
+    <nav id="modeTabs" class="tabs" aria-label="Pilih plant"></nav>
+  </header>
+
+  <main class="layout">
+    <section class="stage">
+      <div class="card sim-card">
+        <div class="card-head">
+          <div>
+            <h2 id="modeTitle">—</h2>
+            <p id="modeDesc" class="muted"></p>
+          </div>
+          <span id="statusBadge" class="badge">RUNNING</span>
+        </div>
+        <div class="canvas-wrap"><canvas id="simCanvas"></canvas></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="card-head compact">
+          <h3>Grafik real-time</h3>
+          <div class="chart-tools">
+            <div id="legend" class="legend"></div>
+            <select id="windowSelect" title="Jendela waktu grafik">
+              <option value="5">5 s</option>
+              <option value="10" selected>10 s</option>
+              <option value="20">20 s</option>
+              <option value="30">30 s</option>
+            </select>
+            <button id="csvBtn" class="btn ghost" title="Unduh data grafik (CSV)">⬇ CSV</button>
+          </div>
+        </div>
+        <div class="canvas-wrap chart-wrap"><canvas id="chartCanvas"></canvas></div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="card">
+        <h3>Simulasi</h3>
+        <div class="row gap">
+          <button id="playBtn" class="btn primary">⏸ Pause</button>
+          <button id="resetBtn" class="btn">↺ Reset</button>
+        </div>
+        <div class="grid2">
+          <label>Kecepatan sim
+            <select id="speedSelect">
+              <option value="0.25">0.25×</option>
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+              <option value="4">4×</option>
+            </select>
+          </label>
+          <label>Laju kontrol
+            <select id="rateSelect">
+              <option value="20">20 Hz</option>
+              <option value="50">50 Hz</option>
+              <option value="100">100 Hz</option>
+              <option value="200">200 Hz</option>
+              <option value="500">500 Hz</option>
+              <option value="1000">1000 Hz</option>
+            </select>
+          </label>
+        </div>
+        <p class="hint">Shortcut: <kbd>Space</kbd> pause · <kbd>R</kbd> reset · <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> ganti mode</p>
+      </div>
+
+      <div class="card">
+        <div class="row between">
+          <h3>Gain PID</h3>
+          <button id="copyCppBtn" class="btn ghost small" title="Salin konfigurasi ke kode Arduino/C++">{ } Salin C++</button>
+        </div>
+        <label class="full">Preset
+          <select id="presetSelect"></select>
+        </label>
+        <p id="presetDesc" class="hint"></p>
+        <div id="gainRows"></div>
+        <details class="advanced">
+          <summary>Opsi lanjutan</summary>
+          <label class="check"><input type="checkbox" id="antiWindupChk" checked /> Anti-windup (integrator clamping)</label>
+          <label class="check"><input type="checkbox" id="dOnMeasChk" checked /> Derivative on measurement (tanpa derivative kick)</label>
+          <label class="full">Filter suku D, τ (detik)
+            <input type="number" id="dTauInput" min="0" max="0.2" step="0.001" />
+          </label>
+        </details>
+      </div>
+
+      <div class="card">
+        <h3>Parameter plant</h3>
+        <div id="plantControls"></div>
+      </div>
+
+      <div class="card">
+        <h3>Metrik performa</h3>
+        <div id="metrics" class="metrics"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    Dibuat dengan JavaScript murni + Canvas 2D (tanpa dependency). Library PID C++ untuk Arduino/ESP32 tersedia di folder <code>firmware/</code>.
+  </footer>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="js/core/utils.js"></script>
+  <script src="js/core/pid.js"></script>
+  <script src="js/core/stepAnalyzer.js"></script>
+  <script src="js/core/runner.js"></script>
+  <script src="js/sims/dcMotor.js"></script>
+  <script src="js/sims/lineFollower.js"></script>
+  <script src="js/sims/cartPole.js"></script>
+  <script src="js/ui/chart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

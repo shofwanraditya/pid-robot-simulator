@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test-js:
+    name: Simulator & Physics Unit Tests (Node.js)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node tests/run-tests.js
+
+  test-cpp:
+    name: Firmware PID Library Unit Tests (C++)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and run C++ tests
+        run: |
+          g++ -std=c++11 -Wall -Wextra -Werror \
+            -I firmware/PIDController/src \
+            firmware/PIDController/src/PIDController.cpp \
+            firmware/PIDController/test/test_pid.cpp \
+            -o test_pid
+          ./test_pid
