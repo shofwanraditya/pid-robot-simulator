@@ -1,10 +1,12 @@
 # 🤖 PID Robot Simulator & Embedded C++ Library
 
-[![CI](https://img.shields.io/badge/tests-21%20passed-brightgreen)](#pengujian-unit-test)
-[![Language](https://img.shields.io/badge/code-JavaScript%20%7C%20C%2B%2B11-blue)](#struktur-repositori)
-[![Hardware](https://img.shields.io/badge/platform-Web%20%7C%20Arduino%20%7C%20ESP32%20%7C%20STM32-orange)](#2-library-firmware-c-arduino--esp32--stm32)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/%F0%9F%9A%80%20Live%20Demo-GitHub%20Pages-00b4d8?style=for-the-badge)](https://shofwanraditya.github.io/pid-robot-simulator/simulator/)
+[![CI](https://img.shields.io/github/actions/workflow/status/shofwanraditya/pid-robot-simulator/ci.yml?branch=main&style=for-the-badge&label=Tests%20%28JS%20%2B%20C%2B%2B%29)](https://github.com/shofwanraditya/pid-robot-simulator/actions)
+[![Language](https://img.shields.io/badge/Code-JavaScript%20%7C%20C%2B%2B11-blue?style=for-the-badge)](#struktur-repositori)
+[![Hardware](https://img.shields.io/badge/Platform-Web%20%7C%20Arduino%20%7C%20ESP32%20%7C%20STM32-orange?style=for-the-badge)](#2-library-firmware-c-arduino--esp32--stm32)
 
+> **👉 Coba Simulator Langsung di Browser:** **[https://shofwanraditya.github.io/pid-robot-simulator/](https://shofwanraditya.github.io/pid-robot-simulator/simulator/)**
+>
 > **Interactive Discrete-Time PID Control Lab** untuk sistem robotika & *embedded systems* — dilengkapi 3 simulasi fisika *real-time* di browser (tanpa dependency eksternal) dan **library C++ portable** yang identik secara numerik untuk langsung di-flash ke Arduino / ESP32 / STM32.
 
 ---
