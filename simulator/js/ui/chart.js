@@ -84,8 +84,10 @@
       const m = { l: 56, r: 56, t: 26, b: 26 };
       const pw = w - m.l - m.r, ph = h - m.t - m.b;
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#0b1220';
+      ctx.fillStyle = '#0c0d0e';
       ctx.fillRect(m.l, m.t, pw, ph);
+      ctx.strokeStyle = '#2d3138';
+      ctx.strokeRect(m.l, m.t, pw, ph);
 
       const tNow = this.data.length ? this.data[this.data.length - 1].t : 0;
       const t0 = Math.max(0, tNow - this.windowSec), t1 = Math.max(this.windowSec, tNow);

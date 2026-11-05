@@ -14,12 +14,12 @@
   };
 
   const SERIES = [
-    { key: 'setpoint', label: 'Setpoint', color: '#f59e0b', axis: 'left', visible: true, dash: [6, 4] },
-    { key: 'measurement', label: 'Measurement', color: '#22d3ee', axis: 'left', visible: true },
-    { key: 'output', label: 'Output u(t)', color: '#a78bfa', axis: 'right', visible: true, width: 1.2 },
-    { key: 'p', label: 'P', color: '#f87171', axis: 'right', visible: false, width: 1 },
-    { key: 'i', label: 'I', color: '#34d399', axis: 'right', visible: false, width: 1 },
-    { key: 'd', label: 'D', color: '#60a5fa', axis: 'right', visible: false, width: 1 },
+    { key: 'setpoint', label: 'CH1 Ref', color: '#f5c518', axis: 'left', visible: true, dash: [5, 3] },
+    { key: 'measurement', label: 'CH2 Meas', color: '#3fb950', axis: 'left', visible: true },
+    { key: 'output', label: 'CH3 Out u(t)', color: '#f0883e', axis: 'right', visible: true, width: 1.3 },
+    { key: 'p', label: 'P', color: '#e5534b', axis: 'right', visible: false, width: 1 },
+    { key: 'i', label: 'I', color: '#58a6ff', axis: 'right', visible: false, width: 1 },
+    { key: 'd', label: 'D', color: '#d2a8ff', axis: 'right', visible: false, width: 1 },
   ];
 
   const state = {
@@ -247,9 +247,9 @@
 
   function setRunning(r) {
     state.running = r;
-    $('playBtn').textContent = r ? '⏸ Pause' : '▶ Play';
+    $('playBtn').textContent = r ? 'PAUSE' : 'RUN';
     const b = $('statusBadge');
-    b.textContent = r ? 'RUNNING' : 'PAUSED';
+    b.textContent = r ? 'RUN' : 'HOLD';
     b.classList.toggle('paused', !r);
   }
 
